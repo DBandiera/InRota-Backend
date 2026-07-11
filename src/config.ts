@@ -6,7 +6,9 @@ const booleanFromString = z
   .transform((value) => value === "true");
 
 const schema = z.object({
-  NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
+  NODE_ENV: z
+    .enum(["development", "test", "production"])
+    .default("development"),
   PORT: z.coerce.number().int().positive().default(3000),
   HOST: z.string().default("0.0.0.0"),
   TRUST_PROXY_HOPS: z.coerce.number().int().min(0).default(0),
@@ -22,13 +24,19 @@ const schema = z.object({
   REVENUECAT_SECRET_API_KEY: z.string().default(""),
   REVENUECAT_ENTITLEMENT_ID: z.string().default("pro"),
   ACCESS_TOKEN_TTL_SECONDS: z.coerce.number().int().positive().default(900),
-  REGISTRATION_TOKEN_TTL_SECONDS: z.coerce.number().int().positive().default(900),
-  REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(30)
+  REGISTRATION_TOKEN_TTL_SECONDS: z.coerce
+    .number()
+    .int()
+    .positive()
+    .default(900),
+  REFRESH_TOKEN_TTL_DAYS: z.coerce.number().int().positive().default(30),
 });
 
 export type Config = z.infer<typeof schema>;
 
-export function loadConfig(environment: NodeJS.ProcessEnv = process.env): Config {
+export function loadConfig(
+  environment: NodeJS.ProcessEnv = process.env,
+): Config {
   const result = schema.safeParse(environment);
   if (!result.success) {
     const fields = result.error.issues

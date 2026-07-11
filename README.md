@@ -54,6 +54,7 @@ npm run dev
 - Use PostgreSQL gerenciado, HTTPS e segredos em um cofre; nunca envie `.env`.
 - Configure `TRUST_PROXY_HOPS` com a quantidade real de proxies da hospedagem.
 - Use `GET /health` como verificação de prontidão da API e do PostgreSQL.
+- Se for usar Render, siga [docs/RENDER_DEPLOY.md](docs/RENDER_DEPLOY.md).
 
 ### Imagem de produção
 
