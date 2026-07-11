@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: .
+      target: runtime
+    env_file:
+      - .env.production
+    ports:
+      - "3000:3000"
+    init: true
+    restart: unless-stopped
+    command:
+      - /bin/sh
+      - -c
+      - node dist/database/migrate.js && exec node dist/server.js
