@@ -58,7 +58,7 @@ export class PlayIntegrityService {
       const result = await client.request<IntegrityResponse>({
         url,
         method: "POST",
-        data: { integrityToken: token }
+        data: { integrity_token: token }
       });
       response = result.data;
     } catch {
@@ -100,3 +100,4 @@ export class PlayIntegrityService {
     };
   }
 }
+
