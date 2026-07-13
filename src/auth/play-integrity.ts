@@ -29,7 +29,7 @@ export interface IntegrityVerdict {
 
 export class PlayIntegrityService {
   private readonly auth = new GoogleAuth({
-    scopes: ["https://www.googleapis.com/auth/cloud-platform"]
+    scopes: ["https://www.googleapis.com/auth/playintegrity"]
   });
 
   constructor(private readonly config: Config) {}
@@ -102,6 +102,7 @@ export class PlayIntegrityService {
     };
   }
 }
+
 
 
 
