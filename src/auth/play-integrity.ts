@@ -61,7 +61,9 @@ export class PlayIntegrityService {
         data: { integrity_token: token }
       });
       response = result.data;
-    } catch {
+    } catch (error) {
+      const details = error as { code?: string | number; message?: string; response?: { status?: number } };
+      console.error("Play Integrity decode failed", { code: details.code, status: details.response?.status, message: details.message });
       throw new AppError(
         401,
         "INVALID_INTEGRITY_TOKEN",
@@ -100,4 +102,6 @@ export class PlayIntegrityService {
     };
   }
 }
+
+
 
